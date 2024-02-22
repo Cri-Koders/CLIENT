@@ -11,6 +11,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class LoginComponent{
 
   formularioLogin: FormGroup
+  controlNames: string[] = ['email', 'password'];
+  labels: string[] = ['Email', 'Password'];
 
 
   constructor( private form : FormBuilder ) {
