@@ -1,19 +1,31 @@
 <!-- <img class="w-full -z-10" src="https://img.asmedia.epimg.net/resizer/f4HDtSPjEasJj8B_cXPKpra1CC4=/360x203/cloudfront-eu-central-1.images.arcpublishing.com/diarioas/HCIDPA5EIZBOZMVBB6UA4JNWDU.jpg" alt="oso-vicioso"> -->
 <section class="bg-[url('https://img.asmedia.epimg.net/resizer/f4HDtSPjEasJj8B_cXPKpra1CC4=/360x203/cloudfront-eu-central-1.images.arcpublishing.com/diarioas/HCIDPA5EIZBOZMVBB6UA4JNWDU.jpg')] bg-no-repeat bg-contain w-full h-full">
-  <section class="absolute bottom-0 left-0 w-full bg-blue-600 h-[75%] rounded-t-[25px] p-[20px] flex flex-col">
-    <h2>F.E.D.E. S.A. de C.V</h2>
-    <form [formGroup]="formularioLogin" (ngSubmit)="iniciarSesion()">
-      <div class="flex flex-col">
-        <label for="email" class="form-label">Email</label>
-        <input type="text" id="email" formControlName="email">
-      </div>
+  <section class="absolute bottom-0 left-0 w-full bg-blue-600 h-[77%] rounded-t-[25px] p-[20px] flex flex-col items-center gap-[20px]">
+    <h2 class="text-[38px]">F.E.D.E. S.A. de C.V</h2>
+    <form [formGroup]="formularioLogin" (ngSubmit)="iniciarSesion()" class="flex flex-col w-[100%] items-center gap-[10px]">
+      <mat-form-field class="w-full h-[77px]">
+        <mat-label for="email" class="form-label">Email</mat-label>
+        <input matInput type="text" id="email" formControlName="email">
+        <mat-error *ngIf="hasErrors('email', 'required')">Campo requerido</mat-error>
+      </mat-form-field>
 
-      <div class="flex flex-col">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" id="password" formControlName="password">
-      </div>
-      <button>Iniciar Sesion</button>
+      <mat-form-field class="w-full">
+        <mat-label for="password" class="form-label">Password</mat-label>
+        <input matInput type="password" id="password" formControlName="password">
+        <mat-error *ngIf="hasErrors('password', 'required')">Campo requerido</mat-error>
+      </mat-form-field>
+      <button class="w-[50%] bg-sky-900 p-[10px] rounded-lg text-[15px]">Iniciar Sesion</button>
     </form>
+
+    <div class="w-full grid grid-cols-2">
+      <p class="text-white text-[3vw] justify-self-center w-[80%] text-center	">¿Olvidaste tu contraseña?</p>
+      <p class="text-white text-[3vw] justify-self-center w-[80%] text-center	">Ingresa como invitado</p>
+    </div>
+    <div class="w-full grid grid-cols-2">
+      <p>google</p>
+      <p>facebook</p>
+    </div>
+      <p class="text-white text-[3vw] justify-self-center w-[80%] text-center	">¿No tienes cuenta? Registrate</p>
 
   </section>
 </section>
