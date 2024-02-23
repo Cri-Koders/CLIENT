@@ -15,13 +15,10 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent{
 
   formularioLogin: FormGroup
-  controlNames: string[] = ['email', 'password'];
-  labels: string[] = ['Email', 'Password'];
-
 
   constructor( private form : FormBuilder ) {
     this.formularioLogin = this.form.group({
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }
@@ -31,7 +28,7 @@ export class LoginComponent{
   }
 
   iniciarSesion() {
-    console.log(this.formularioLogin.value);
+    console.log(this.formularioLogin);
   }
 
 }
