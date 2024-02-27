@@ -1,8 +1,8 @@
 <!-- <img class="w-full -z-10" src="https://img.asmedia.epimg.net/resizer/f4HDtSPjEasJj8B_cXPKpra1CC4=/360x203/cloudfront-eu-central-1.images.arcpublishing.com/diarioas/HCIDPA5EIZBOZMVBB6UA4JNWDU.jpg" alt="oso-vicioso"> -->
 <section class="bg-[url('https://img.asmedia.epimg.net/resizer/f4HDtSPjEasJj8B_cXPKpra1CC4=/360x203/cloudfront-eu-central-1.images.arcpublishing.com/diarioas/HCIDPA5EIZBOZMVBB6UA4JNWDU.jpg')] bg-contain w-full h-full">
-  <section class="absolute bottom-0 left-0 w-full bg-blue-600 h-[75%] rounded-t-[25px] px-[20px] py-[5vh] flex flex-col items-center gap-[20px] sm:px-[35px]">
-    <h2 class="text-[38px] text-white sm:text-[50px]">F.E.D.E. S.A. de C.V</h2>
-    <form [formGroup]="formularioLogin" (ngSubmit)="iniciarSesion()" class="flex flex-col w-[100%] items-center gap-[8px] sm:gap-[15px]">
+  <section class="absolute bottom-0 left-0 w-full bg-blue-700 h-[75%] rounded-t-[25px] px-[20px] py-[30px] flex flex-col items-center gap-[1.9vh] sm:px-[35px]">
+    <h2 class="text-[5.5vh] text-white text-center sm:text-[50px]">F.E.D.E.</h2>
+    <form [formGroup]="formularioLogin" (ngSubmit)="iniciarSesion()" class="flex flex-col w-[100%] py-[15px] items-center sm:gap-[15px]">
       <mat-form-field class="w-full input-container-loginform">
         <mat-label for="email" class="form-label">Email</mat-label>
         <input matInput type="text" id="email" formControlName="email">
@@ -15,18 +15,18 @@
         <input matInput type="password" id="password" formControlName="password">
         <mat-error *ngIf="hasErrors('password', 'required')">Campo requerido</mat-error>
       </mat-form-field>
-      <button class="w-[50%] bg-sky-900 p-[10px] rounded-lg text-[15px] text-white" [disabled]="!formularioLogin.valid">Iniciar Sesion</button>
+      <button class="w-[50%] bg-sky-700 p-[10px] rounded-lg text-[2.2vh] text-white">Iniciar Sesion</button>
     </form>
 
     <div class="w-full grid grid-cols-2">
-      <p class="text-white text-[3vw] justify-self-center w-[80%] text-center	">¿Olvidaste tu contraseña?</p>
-      <p class="text-white text-[3vw] justify-self-center w-[80%] text-center	">Ingresa como invitado</p>
+      <p class="text-white text-[1.7vh] text-center	">¿Olvidaste tu contraseña?</p>
+      <p class="text-white text-[1.7vh] text-center	">Ingresa como invitado</p>
     </div>
-    <div class="w-full grid grid-cols-2">
-      <p class="text-white text-[3vw] justify-self-center w-[80%] text-center	">google</p>
-      <p class="text-white text-[3vw] justify-self-center w-[80%] text-center	">facebook</p>
+    <div class="w-full grid grid-cols-2 h-auto">
+      <fa-icon [icon]="faFacebook" class="w-fit text-[7vh] justify-self-center text-white	" ></fa-icon>
+      <fa-icon [icon]="faGoogle" class="w-fit text-[7vh] justify-self-center text-white	" ></fa-icon>
     </div>
-      <p class="text-white text-[3vw] justify-self-center w-[80%] text-center	">¿No tienes cuenta? Registrate</p>
+      <p class="text-white text-[1.7vh] text-center">¿No tienes cuenta? Registrate</p>
 
   </section>
 </section>

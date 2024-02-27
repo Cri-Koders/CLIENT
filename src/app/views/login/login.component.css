@@ -1,6 +1,6 @@
 .input-container-loginform input{
 
-  font-size: 17px;
+  font-size: 2.4vh;
 
   @media (min-width: 640px) {
     font-size: 22px;
