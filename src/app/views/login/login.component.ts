@@ -2,26 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {ErrorStateMatcher} from '@angular/material/core';
 import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { LoginService } from './login.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ ReactiveFormsModule, MatInputModule, MatFormFieldModule, CommonModule],
+  imports: [ ReactiveFormsModule, MatInputModule, MatFormFieldModule, CommonModule, FontAwesomeModule, HttpClientModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent{
 
+  faGoogle = faGoogle as IconProp
+  faFacebook = faFacebook as IconProp
   formularioLogin: FormGroup
-  controlNames: string[] = ['email', 'password'];
-  labels: string[] = ['Email', 'Password'];
 
-
-  constructor( private form : FormBuilder ) {
+  constructor( private form : FormBuilder, private _backConnection : LoginService ) {
     this.formularioLogin = this.form.group({
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }
@@ -31,7 +34,11 @@ export class LoginComponent{
   }
 
   iniciarSesion() {
+    if (!this.formularioLogin.valid) {
+      return
+    }
     console.log(this.formularioLogin.value);
+    // this._backConnection.loginAccount(this.formularioLogin.value)
   }
 
 }
