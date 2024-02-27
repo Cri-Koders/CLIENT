@@ -6,11 +6,13 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { LoginService } from './login.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ ReactiveFormsModule, MatInputModule, MatFormFieldModule, CommonModule, FontAwesomeModule],
+  imports: [ ReactiveFormsModule, MatInputModule, MatFormFieldModule, CommonModule, FontAwesomeModule, HttpClientModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -20,7 +22,7 @@ export class LoginComponent{
   faFacebook = faFacebook as IconProp
   formularioLogin: FormGroup
 
-  constructor( private form : FormBuilder ) {
+  constructor( private form : FormBuilder, private _backConnection : LoginService ) {
     this.formularioLogin = this.form.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
@@ -35,7 +37,8 @@ export class LoginComponent{
     if (!this.formularioLogin.valid) {
       return
     }
-    console.log(this.formularioLogin);
+    console.log(this.formularioLogin.value);
+    // this._backConnection.loginAccount(this.formularioLogin.value)
   }
 
 }
