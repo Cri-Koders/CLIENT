@@ -8,11 +8,12 @@ import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { LoginService } from './login.service';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ ReactiveFormsModule, MatInputModule, MatFormFieldModule, CommonModule, FontAwesomeModule, HttpClientModule],
+  imports: [ ReactiveFormsModule, MatInputModule, MatFormFieldModule, CommonModule, FontAwesomeModule, HttpClientModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
