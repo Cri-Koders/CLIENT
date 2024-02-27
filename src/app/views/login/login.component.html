@@ -18,14 +18,14 @@
     </form>
 
     <div class="w-full grid grid-cols-2">
-      <p class="text-white text-[1.7vh] text-center	">¿Olvidaste tu contraseña?</p>
-      <p class="text-white text-[1.7vh] text-center	">Ingresa como invitado</p>
+      <p class="text-white text-[1.7vh] text-center	hover:cursor-pointer w-fit justify-self-center">¿Olvidaste tu contraseña?</p>
+      <p class="text-white text-[1.7vh] text-center	hover:cursor-pointer w-fit justify-self-center">Ingresa como invitado</p>
     </div>
     <div class="w-full grid grid-cols-2 h-auto">
-      <fa-icon [icon]="faFacebook" class="w-fit text-[7vh] justify-self-center text-white	" ></fa-icon>
-      <fa-icon [icon]="faGoogle" class="w-fit text-[7vh] justify-self-center text-white	" ></fa-icon>
+      <fa-icon [icon]="faFacebook" class="w-fit text-[7vh] justify-self-center text-white	hover:cursor-pointer" ></fa-icon>
+      <fa-icon [icon]="faGoogle" class="w-fit text-[7vh] justify-self-center text-white	hover:cursor-pointer" ></fa-icon>
     </div>
-      <p class="text-white text-[1.7vh] text-center">¿No tienes cuenta? Registrate</p>
+      <p class="text-white text-[1.7vh] text-center hover:cursor-pointer" [routerLink]="['/sign-up']" routerLinkActive="router-link-active" >¿No tienes cuenta? Registrate</p>
 
   </section>
 </section>
