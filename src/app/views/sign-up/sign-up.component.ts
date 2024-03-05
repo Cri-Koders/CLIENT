@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
+import { TemplateBannerComponent } from '../../components/template-banner/template-banner.component';
 
 
 type ErrorMessages = {
@@ -20,7 +22,7 @@ const errorMessages: ErrorMessages = {
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [ReactiveFormsModule, MatInputModule, MatFormFieldModule, CommonModule],
+  imports: [ReactiveFormsModule, MatInputModule, MatFormFieldModule, CommonModule, MatIconModule, TemplateBannerComponent],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
@@ -52,8 +54,6 @@ export class SignUpComponent {
       ]],
     });
   }
-
-
   mustMatch(controlName: string): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const matchingControl = control?.parent?.get(controlName);

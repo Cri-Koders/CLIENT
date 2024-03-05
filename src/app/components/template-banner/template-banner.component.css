@@ -1,0 +1,7 @@
+.banner{
+    background-image: url(/assets/banner/images/checkbox.svg);
+    background-repeat: no-repeat;
+    background-color: rebeccapurple;
+    background-size: contain;
+    background-position: center;
+}

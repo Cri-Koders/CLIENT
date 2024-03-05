@@ -4,3 +4,19 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html {
+    font-size: 100%;
+}
+
+p{
+    font-size: 1rem;
+}
+
+h1{
+    font-size: 2rem;
+}
+
+.mat-button {
+    background-color: red !important; /* Cambia el color a tu preferencia */
+    color: #fff; /* Cambia el color del texto si es necesario */
+  }

@@ -1,31 +1,34 @@
-<section class="bg-[url('https://img.asmedia.epimg.net/resizer/f4HDtSPjEasJj8B_cXPKpra1CC4=/360x203/cloudfront-eu-central-1.images.arcpublishing.com/diarioas/HCIDPA5EIZBOZMVBB6UA4JNWDU.jpg')] bg-contain w-full h-full  lg:bg-right-top login-content">
-  <section class="absolute bottom-0 left-0 w-full bg-blue-700 h-[75%] rounded-t-[25px] px-[20px] py-[30px] flex flex-col items-center gap-[1.9vh] justify-items-center lg:justify-center sm:px-[35px] lg:h-full lg:w-[40%] lg:rounded-t-[0] lg:min-w-[512px]">
-    <h2 class="text-[5.5vh] text-white text-center">F.E.D.E.</h2>
-    <form [formGroup]="formularioLogin" (ngSubmit)="iniciarSesion()" class="flex flex-col w-[100%] py-[15px] items-center sm:gap-[15px]">
+<app-template-banner>
+  <div class="flex-grow flex flex-col">
+    <h1 class=" text-center">F.E.D.E.</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm()"
+      class="flex flex-col w-[100%] py-[15px] items-center sm:gap-[15px]">
       <mat-form-field class="w-full input-container-loginform">
-        <mat-label for="email" class="form-label">Email</mat-label>
-        <input matInput type="text" id="email" formControlName="email">
+        <mat-label class="form-label">Email</mat-label>
+        <input matInput type="text" formControlName="email">
         <mat-error *ngIf="hasErrors('email', 'email')">Ingrese un correo electrónico válido</mat-error>
         <mat-error *ngIf="hasErrors('email', 'required')">Campo requerido</mat-error>
       </mat-form-field>
 
       <mat-form-field class="w-full input-container-loginform">
-        <mat-label for="password" class="form-label">Password</mat-label>
-        <input matInput type="password" id="password" formControlName="password">
+        <mat-label class="form-label">Password</mat-label>
+        <input matInput type="password" formControlName="password">
         <mat-error *ngIf="hasErrors('password', 'required')">Campo requerido</mat-error>
       </mat-form-field>
-      <button class="w-[50%] bg-sky-700 p-[10px] rounded-lg text-[2.2vh] text-white">Iniciar Sesion</button>
+      <button mat-raised-button color="accent" class="min-h-[3rem] w-full  ">Iniciar Sesion</button>
     </form>
 
-    <div class="w-full grid grid-cols-2">
-      <p class="text-white text-[1.7vh] text-center	hover:cursor-pointer w-fit justify-self-center">¿Olvidaste tu contraseña?</p>
-      <p class="text-white text-[1.7vh] text-center	hover:cursor-pointer w-fit justify-self-center">Ingresa como invitado</p>
+    <div color="primary" routerLink="/forgot-password" class="w-full grid grid-cols-2">
+      <a class="justify-self-center">¿Olvidaste tu
+        contraseña?</a>
+      <a class="justify-self-center">Ingresa como
+        invitado</a>
     </div>
-    <div class="w-full grid grid-cols-2 h-auto">
-      <fa-icon [icon]="faFacebook" class="w-fit text-[7vh] justify-self-center text-white	hover:cursor-pointer" ></fa-icon>
-      <fa-icon [icon]="faGoogle" class="w-fit text-[7vh] justify-self-center text-white	hover:cursor-pointer" ></fa-icon>
+    <div class="w-full grid grid-cols-2 h-auto text-center text-[2.225rem]">
+      <fa-icon [icon]="faFacebook" class="w-full justify-self-center	hover:cursor-pointer"></fa-icon>
+      <fa-icon [icon]="faGoogle" class="justify-self-center	hover:cursor-pointer w-full"></fa-icon>
     </div>
-      <p class="text-white text-[1.7vh] text-center hover:cursor-pointer" [routerLink]="['/sign-up']" routerLinkActive="router-link-active" >¿No tienes cuenta? Registrate</p>
-
-  </section>
-</section>
+    <p class=" text-[1.7vh] text-center hover:cursor-pointer" [routerLink]="['/sign-up']"
+      routerLinkActive="router-link-active">¿No tienes cuenta? Registrate</p>
+  </div>
+</app-template-banner>

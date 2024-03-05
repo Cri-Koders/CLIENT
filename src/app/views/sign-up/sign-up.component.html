@@ -1,15 +1,16 @@
-@if(signUp){
-<form class="flex flex-col lg:w-[40%] md:w-[100%] p-2 " [formGroup]="signUp" (ngSubmit)="submitForm()">
-    @for (control of controlNames; track $index) {
-        <mat-form-field>
-            <mat-label>{{labels[$index]}}</mat-label>
-            <input matInput [formControlName]="control">
-            @if(signUp.get(control)?.errors){
-                <mat-error *ngFor="let error of getErrors(signUp.get(control))">
-                    {{ error }}
-                </mat-error>
-            }
-        </mat-form-field>
-    }
-</form>
-}
+<app-template-banner>
+        <h1 class="cl-signup ">SignUp</h1>
+        @if(signUp){
+            <form class="flex flex-col " [formGroup]="signUp" (ngSubmit)="submitForm()">
+                @for (control of controlNames; track $index) {
+                    <mat-form-field>
+                        <mat-label>{{labels[$index]}}</mat-label>
+                        <input matInput [formControlName]="control">
+                        <mat-error *ngFor="let error of getErrors(signUp.get(control))">
+                            {{ error }}
+                        </mat-error>
+                    </mat-form-field>
+                }
+            </form>
+        }
+</app-template-banner>
