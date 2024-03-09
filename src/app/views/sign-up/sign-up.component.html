@@ -1,16 +1,55 @@
 <app-template-banner>
-        <h1 class="cl-signup ">SignUp</h1>
-        @if(signUp){
-            <form class="flex flex-col " [formGroup]="signUp" (ngSubmit)="submitForm()">
-                @for (control of controlNames; track $index) {
-                    <mat-form-field>
-                        <mat-label>{{labels[$index]}}</mat-label>
-                        <input matInput [formControlName]="control">
-                        <mat-error *ngFor="let error of getErrors(signUp.get(control))">
-                            {{ error }}
-                        </mat-error>
-                    </mat-form-field>
-                }
-            </form>
-        }
+    <h1 class="cl-signup ">SignUp</h1>
+    @if(signUp){
+    <form class="flex flex-col" [formGroup]="signUp" (ngSubmit)="submitForm()">
+        <mat-form-field>
+            <mat-label>{{'Nombre de usuario'}}</mat-label>
+            <input matInput autocomplete="username" formControlName="username">
+            @if (signUp.get('username')?.touched) {
+            <mat-error *ngFor="let error of getErrors(signUp.get('username'))">
+                {{ error }}
+            </mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{'Email'}}</mat-label>
+            <input matInput autocomplete="email" formControlName="email">
+            @if (signUp.get('username')?.touched) {
+            <mat-error *ngFor="let error of getErrors(signUp.get('email'))">
+                {{ error }}
+            </mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{'Contraseña'}}</mat-label>
+            <input matInput autocomplete="new-password" formControlName="password">
+            @if (signUp.get('password')?.touched) {
+            <mat-error *ngFor="let error of getErrors(signUp.get('password'))">
+                {{ error }}
+            </mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{'Confirmar contraseña'}}</mat-label>
+            <input matInput autocomplete="new-password" formControlName="repeatPassword">
+            @if (signUp.get('repeatPassword')?.touched) {
+            @if(!signUp.hasError('mustMatch')){
+            <mat-error *ngFor="let error of getErrors(signUp.get('repeatPassword'))">
+                {{ error }}
+            </mat-error>
+            }@else {
+
+            <mat-error *ngIf="signUp.hasError('mustMatch')">
+                {{getErrorMsg('mustMatch', 'mustMatch')}}
+            </mat-error>
+            }
+            }
+        </mat-form-field>
+
+        <button [disabled]="signUp.invalid" mat-raised-button color="primary" type="submit"
+            class="material-custom-button">
+            Ingresar
+        </button>
+    </form>
+    }
 </app-template-banner>

@@ -5,6 +5,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { TemplateBannerComponent } from '../../components/template-banner/template-banner.component';
+import { MatButtonModule } from '@angular/material/button';
+import { RegisterForm, RegisterReactiveForm } from '../../shared/interfaces/auth';
+import { FormUtilsService } from '../../shared/services/utils/form-utils.service';
+import { AuthService } from '../../shared/services/auth.service';
 
 
 type ErrorMessages = {
@@ -22,50 +26,56 @@ const errorMessages: ErrorMessages = {
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [ReactiveFormsModule, MatInputModule, MatFormFieldModule, CommonModule, MatIconModule, TemplateBannerComponent],
+  imports: [ReactiveFormsModule, MatInputModule, MatFormFieldModule, CommonModule, MatIconModule, TemplateBannerComponent, MatButtonModule],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent {
-  signUp!: FormGroup;
+  signUp: FormGroup<RegisterReactiveForm> = this.fb.group({
+    username: this.formService.makeNNFormControlWithValidators('', [Validators.required, Validators.minLength(5)]),
+    email: this.formService.makeNNFormControlWithValidators('', [Validators.required, Validators.email]),
+    password: this.formService.makeNNFormControlWithValidators('', [Validators.required, Validators.minLength(6)]),
+    repeatPassword: this.formService.makeNNFormControlWithValidators('', [Validators.required]),
+  },
+    {
+      validators: [
+        this.passwordMatchValidator
+      ]
+    });
+  hide = true;
   controlNames: string[] = ['username', 'email', 'password', 'repeatPassword'];
   labels: string[] = ['Nombre de usuario', 'Email', 'Contraseña', 'Confirmar contraseña'];
 
+  showPass1: boolean = false;
+  showPass2: boolean = false;
+
   constructor(
     private fb: FormBuilder,
+    private formService: FormUtilsService,
+    private authService: AuthService,
   ) {
-    this.signUp = this.fb.group({
-      username: ['', [
-        Validators.required,
-        Validators.minLength(5)
-      ]],
-      email: ['', [
-        Validators.required,
-        Validators.email
-      ]],
-      repeatPassword: ['', [
-        Validators.required,
-        this.mustMatch('password'),
-      ]],
-      password: ['', [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.pattern(/^[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]+$/)
-      ]],
-    });
   }
-  mustMatch(controlName: string): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      const matchingControl = control?.parent?.get(controlName);
-      if (matchingControl && control?.value !== matchingControl.value) {
-        return { mustMatch: true };
-      }
-      return null;
-    };
+
+  passwordMatchValidator(form: AbstractControl): {[key: string]: any} | null {
+    return form.get('password')?.value === form.get('repeatPassword')?.value ? null : { 'mustMatch': true };
   }
 
   submitForm() {
-    console.log(this.signUp.getRawValue());
+    const { email, password, repeatPassword, username } =  this.signUp.getRawValue();
+    const formToSend : RegisterForm = {
+      email,
+      password,
+      username,
+    }
+    this.authService.register(formToSend).subscribe({
+      next: (response)=>{
+        console.log(response);
+      },
+      error: (error)=>{
+        console.log(error);
+        
+      }
+    })
   }
 
   getErrorMsg(key: string, value: any) {
@@ -77,8 +87,8 @@ export class SignUpComponent {
     return defaultMessage;
   }
 
-  getErrors(control: FormControl|any) {
-    if(!control) return;
+  getErrors(control: FormControl | any) {
+    if (!control) return;
     const errors = control.errors;
     if (errors) {
 
@@ -93,5 +103,4 @@ export class SignUpComponent {
     }
     return [];
   }
-
 }

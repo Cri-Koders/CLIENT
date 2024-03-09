@@ -5,17 +5,20 @@
       class="flex flex-col w-[100%] py-[15px] items-center sm:gap-[15px]">
       <mat-form-field class="w-full input-container-loginform">
         <mat-label class="form-label">Email</mat-label>
-        <input matInput type="text" formControlName="email">
+        <input autocomplete="email" matInput type="text" formControlName="email">
         <mat-error *ngIf="hasErrors('email', 'email')">Ingrese un correo electrónico válido</mat-error>
         <mat-error *ngIf="hasErrors('email', 'required')">Campo requerido</mat-error>
       </mat-form-field>
 
       <mat-form-field class="w-full input-container-loginform">
         <mat-label class="form-label">Password</mat-label>
-        <input matInput type="password" formControlName="password">
+        <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" autocomplete="current-password" >
+        <button (click)="showPassword = !showPassword" type="button" mat-icon-button matSuffix>
+          <mat-icon>{{showPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
         <mat-error *ngIf="hasErrors('password', 'required')">Campo requerido</mat-error>
       </mat-form-field>
-      <button mat-raised-button color="accent" class="min-h-[3rem] w-full  ">Iniciar Sesion</button>
+      <button mat-raised-button color="accent" class="min-h-[3rem] w-full" type="submit">Iniciar Sesion</button>
     </form>
 
     <div color="primary" routerLink="/forgot-password" class="w-full grid grid-cols-2">
