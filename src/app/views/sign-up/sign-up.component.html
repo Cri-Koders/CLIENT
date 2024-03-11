@@ -55,8 +55,9 @@
             </button>
             <div class="w-full flex text-center flex-col">
                 <div class="flex text-[2.5rem] text-center">
-                        <fa-icon (click)="useFacebookStrategy()" [icon]="faFacebook" class="w-full justify-self-center	hover:cursor-pointer"></fa-icon>
-        <fa-icon (click)="useGoogleStrategy()" [icon]="faGoogle" class="justify-self-center	hover:cursor-pointer w-full"></fa-icon>
+                    
+                    <fa-icon (click)="useFacebookStrategy()" [icon]="faFacebook" class="w-full justify-self-center	hover:cursor-pointer"></fa-icon>
+                    <fa-icon (click)="useGoogleStrategy()" [icon]="faGoogle" class="justify-self-center	hover:cursor-pointer w-full"></fa-icon>
                 </div>
                 <div class="flex">
                     <a class=" text-[1.7vh] text-center hover:cursor-pointer" [routerLink]="['/login']"

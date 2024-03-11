@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { LoginForm, RegisterForm } from '../interfaces/auth';
@@ -9,28 +9,28 @@ import { LoginForm, RegisterForm } from '../interfaces/auth';
 export class AuthService {
 
   protected api = environment.API_URL;
-  
+
   constructor(
     private readonly http: HttpClient,
   ) { }
 
-  login(propsLogin: LoginForm){
+  login(propsLogin: LoginForm) {
     const body = propsLogin;
-    return this.http.post(`${this.api}/user/login`,body);
+    return this.http.post(`${this.api}/user/login`, body);
   }
 
-  register(propsRegister: RegisterForm){
+  register(propsRegister: RegisterForm) {
     const body = propsRegister;
     return this.http.post(`${this.api}/user/sign`, body, {
       responseType: "text",
     });
   }
 
-  facebookStrategyAuth(){
-    return this.http.get<any>(`${this.api}/user/login/facebook`);
+  facebookStrategyAuth() {
+    return `${this.api}/user/login/facebook`;
   }
-  googleStrategyAuth(){
-    return this.http.get<any>(`${this.api}/user/login/google`);
+  googleStrategyAuth() {
+    return `${this.api}/user/login/google`;
   }
 
 }
