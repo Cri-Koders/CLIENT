@@ -110,20 +110,10 @@ export class SignUpComponent {
   }
 
   useFacebookStrategy(){
-    this.authService.facebookStrategyAuth().subscribe({
-      next: (response: any)=>{
-        console.log(response, " xd <=== response");
-        
-      }
-    });
+    window.open(this.authService.facebookStrategyAuth(), '_blank');
   }
 
   useGoogleStrategy(){
-    this.authService.googleStrategyAuth().subscribe({
-      next: (response: any)=>{
-        console.log(response, " xd <=== response");
-        
-      }
-    });
+    window.open(this.authService.googleStrategyAuth(), '_blank');
   }
 }
