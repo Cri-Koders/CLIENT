@@ -26,4 +26,11 @@ export class AuthService {
     });
   }
 
+  facebookStrategyAuth(){
+    return this.http.get<any>(`${this.api}/user/login/facebook`);
+  }
+  googleStrategyAuth(){
+    return this.http.get<any>(`${this.api}/user/login/google`);
+  }
+
 }

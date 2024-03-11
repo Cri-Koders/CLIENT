@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -60,6 +60,24 @@ export class LoginComponent implements OnInit {
     this.authService.login(propsToLogin).subscribe({
       next: (response: any)=>{
         console.log(response);
+      }
+    });
+  }
+
+  useFacebookStrategy(){
+    this.authService.facebookStrategyAuth().subscribe({
+      next: (response: any)=>{
+        console.log(response, " xd <=== response");
+        
+      }
+    });
+  }
+
+  useGoogleStrategy(){
+    this.authService.googleStrategyAuth().subscribe({
+      next: (response: any)=>{
+        console.log(response, " xd <=== response");
+        
       }
     });
   }
