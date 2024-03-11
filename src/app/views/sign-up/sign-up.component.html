@@ -1,15 +1,70 @@
-@if(signUp){
-<form class="flex flex-col lg:w-[40%] md:w-[100%] p-2 " [formGroup]="signUp" (ngSubmit)="submitForm()">
-    @for (control of controlNames; track $index) {
-        <mat-form-field>
-            <mat-label>{{labels[$index]}}</mat-label>
-            <input matInput [formControlName]="control">
-            @if(signUp.get(control)?.errors){
-                <mat-error *ngFor="let error of getErrors(signUp.get(control))">
+<app-template-banner>
+    @if(signUp){
+    <form class="flex flex-grow flex-col gap-[3rem]" [formGroup]="signUp" (ngSubmit)="submitForm()">
+        <h1 class="">Registro</h1>
+        <div class="flex flex-col">
+            <mat-form-field>
+                <mat-label>{{'Nombre de usuario'}}</mat-label>
+                <input matInput autocomplete="username" formControlName="username">
+                @if (signUp.get('username')?.touched) {
+                <mat-error *ngFor="let error of getErrors(signUp.get('username'))">
                     {{ error }}
                 </mat-error>
-            }
-        </mat-form-field>
+                }
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{'Email'}}</mat-label>
+                <input matInput autocomplete="email" formControlName="email">
+                @if (signUp.get('username')?.touched) {
+                <mat-error *ngFor="let error of getErrors(signUp.get('email'))">
+                    {{ error }}
+                </mat-error>
+                }
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{'Contraseña'}}</mat-label>
+                <input matInput autocomplete="new-password" formControlName="password" [type]="showPass1 ? 'text':'password'">
+                <button (click)="showPass1 = !showPass1" type="button" mat-icon-button matSuffix><mat-icon>{{showPass1 ? 'visibility_off' : 'visibility'}}</mat-icon></button>
+                @if (signUp.get('password')?.touched) {
+                <mat-error *ngFor="let error of getErrors(signUp.get('password'))">
+                    {{ error }}
+                </mat-error>
+                }
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{'Confirmar contraseña'}}</mat-label>
+                <input matInput autocomplete="new-password" formControlName="repeatPassword" [type]="showPass2 ? 'text':'password'">
+                <button (click)="showPass2 = !showPass2" type="button" mat-icon-button matSuffix><mat-icon>{{showPass2 ? 'visibility_off' : 'visibility'}}</mat-icon></button>
+                @if (signUp.get('repeatPassword')?.touched) {
+                @if(!signUp.hasError('mustMatch')){
+                <mat-error *ngFor="let error of getErrors(signUp.get('repeatPassword'))">
+                    {{ error }}
+                </mat-error>
+                }@else {
+
+                <mat-error *ngIf="signUp.hasError('mustMatch')">
+                    {{getErrorMsg('mustMatch', 'mustMatch')}}
+                </mat-error>
+                }
+                }
+            </mat-form-field>
+
+            <button [disabled]="signUp.invalid" mat-raised-button color="primary" type="submit"
+                class="material-custom-button">
+                Ingresar
+            </button>
+            <div class="w-full flex text-center flex-col">
+                <div class="flex text-[2.5rem] text-center">
+                        <fa-icon (click)="useFacebookStrategy()" [icon]="faFacebook" class="w-full justify-self-center	hover:cursor-pointer"></fa-icon>
+        <fa-icon (click)="useGoogleStrategy()" [icon]="faGoogle" class="justify-self-center	hover:cursor-pointer w-full"></fa-icon>
+                </div>
+                <div class="flex">
+                    <a class=" text-[1.7vh] text-center hover:cursor-pointer" [routerLink]="['/login']"
+                        routerLinkActive="router-link-active">¿Ya tienes una cuenta? Inicia sesión</a>
+                </div>
+            </div>
+        </div>
+    </form>
+
     }
-</form>
-}
+</app-template-banner>
